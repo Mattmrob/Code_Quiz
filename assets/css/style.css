@@ -10,6 +10,11 @@ body {
     width: 100vw;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+}
+
 button {
     font-family: sans-serif;
     color: white;
@@ -41,7 +46,7 @@ button {
 
 #quizstatement {
     font-family: sans-serif;
-    line-height: 110%;
+    line-height: 120%;
     margin: 20px 20px 55px 20px;
 }
 
@@ -50,15 +55,24 @@ button {
     flex-direction: column;
 }
 
-#scoreboard {
-}
-
-#timer {
+#answer-result {
+    text-align: center;
+    font-style: italic;
+    color: grey;
+    text-decoration: underline;
+    padding-top: 10px;
 }
 
 button:hover {
     background-color: slategray;
 }
+
+a:hover {
+    color: slateblue;
+}
+
+
+/* -------------- FOR MOBILE -------------- */
 
 @media (max-width: 580px) {
 
@@ -81,6 +95,6 @@ button:hover {
 
     #quizstatement {
         font-size: 1.6em;
-        margin: 0px 20px 30px 20px;
+        margin: 0px 20px 20px 20px;
     }
 }
