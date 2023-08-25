@@ -1,3 +1,7 @@
+* {
+    font-family: sans-serif;
+}
+
 body {
     display: flex;
     flex-direction: row;
@@ -6,25 +10,77 @@ body {
     width: 100vw;
 }
 
+button {
+    font-family: sans-serif;
+    color: white;
+    padding: 10px 12px 10px 12px;
+    margin: 7px;
+    background-color: teal;
+    border: 0px;
+    border-radius: 10px;
+}
+
+.sidebar {
+    width: 120px;
+    text-align: center;
+    padding: 10% 0px 10% 0px;
+    margin: 0px 10px 0px 10px;
+    border: 1px solid purple;
+}
+
 #quizarea {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height:100vh;
-    width: 500px;
+    width: 800px;
+    padding: 0px 0px 10% 0px;
     border: 1px solid blue;
+}
+
+#quizstatement {
+    font-family: sans-serif;
+    line-height: 110%;
+    margin: 20px 20px 55px 20px;
 }
 
 #quizanswers {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 #scoreboard {
-    border: 1px solid purple;
 }
 
 #timer {
-    border: 1px solid red;
+}
+
+button:hover {
+    background-color: slategray;
+}
+
+@media (max-width: 580px) {
+
+    body {
+    flex-direction: column;
+    align-items: space-evenly;
+    }
+
+    .sidebar {
+        width: auto;
+        text-align: center;
+        padding: 10px 0px 10px 0px;
+    }
+
+    #quizarea {
+        padding: 0px 0px 0px 0px;
+        height: auto;
+        width: auto;
+    }
+
+    #quizstatement {
+        font-size: 1.6em;
+        margin: 0px 20px 30px 20px;
+    }
 }
