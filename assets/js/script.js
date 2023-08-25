@@ -30,9 +30,21 @@ const option3 = document.querySelector("#option3");
 const option4 = document.querySelector("#option4");
 
 const quizQuestion = "Test";
-// const answerOptions = [option1, option2, option3, option4];
-
 const currentQuestion = [[quizQuestion], [option1, option2, option3, option4]]
+
+
+
+
+quizAnswers.addEventListener("click", function(event) {
+
+let selectedButton = event.target;
+
+if (selectedButton.matches("button") === true) {
+let bool = selectedButton.getAttribute("data-selected")
+console.log(bool);
+}
+
+})
 
 
 
