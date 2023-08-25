@@ -19,10 +19,12 @@
 // A message is displayed on the bottom if their choice was right or wrong
 // A new question is selected
 
+// ----------- VARIABLES ----------- 
+
 const quizArea = document.querySelector("#quizarea");
 const quizStatement = document.querySelector("#quizstatement");
 const quizAnswers = document.querySelector("#quizanswers");
-const answerResult = document.querySelector("#answer-result");
+let answerResult = document.querySelector("#answer-result");
 
 const option1 = document.querySelector("#option1");
 const option2 = document.querySelector("#option2");
@@ -30,30 +32,39 @@ const option3 = document.querySelector("#option3");
 const option4 = document.querySelector("#option4");
 
 const quizQuestion = "Test";
-const currentQuestion = [[quizQuestion], [option1, option2, option3, option4]]
+const currentQuestion = [[quizQuestion], [option1, option2, option3, option4]];
 
+let bool = "";
 
+// ----------- FUNCTIONS AND EVENTS ----------- 
 
+// This event listener function targets the button clicked and fetches the data-selected property of the button. If it is "true" (string) then you get a positive message, if "false" (also string) you get a negative message
+// first checks for click within quizAnsers ID, then assigns selectedButton to the event target of your click (the specific button you click) ->
+// then checks to make sure you clicked on a button, and if so, assigns data-selected value of that button to variable bool
+// bool is then checked to see if the data-selected is "false" or "true"
+// From here a new question would be assigned, timer would be influenced, and the quiz would go on
 
 quizAnswers.addEventListener("click", function(event) {
 
 let selectedButton = event.target;
 
 if (selectedButton.matches("button") === true) {
-let bool = selectedButton.getAttribute("data-selected")
+bool = selectedButton.getAttribute("data-selected");
 console.log(bool);
 }
+
+if (bool === "true") {
+    answerResult.textContent = "Nice Job!";
+    console.log('it worked true');
+} else if (bool === "false") {
+    answerResult.textContent = "WRONG! MINUS 15 POINT!";
+    console.log('it worked false');
+} else {
+    alert("An error has occured, please contact your local pigeon dealer");
+    return;
+}
+
 
 })
 
 
-
-
-
-
-
-
-
-function test1() {
-    option1.textContent = "test";
-}
