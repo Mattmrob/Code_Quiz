@@ -31,10 +31,12 @@ const option2 = document.querySelector("#option2");
 const option3 = document.querySelector("#option3");
 const option4 = document.querySelector("#option4");
 
-const currentQuestion = [[quizStatement], [option1, option2, option3, option4]];
+let currentQuestion = [[quizStatement], [option1, option2, option3, option4]];
 
 let bool = "";
 let rand = "";
+let questionAnswers = "";
+let correctAnswer = "";
 
 // ----------- QUESTION POOL ----------- 
 
@@ -75,8 +77,44 @@ const answerPool = [answers1, answers2, answers3, answers4, answers5];
 // ----------- FUNCTIONS AND EVENTS ----------- 
 
 function questionSelect() {
-    rand = Math.floor(Math.random() * 10);
-    
+    rand = Math.floor(Math.random() * 5);
+    quizStatement.textContent = questionPool[rand];
+
+    let questionAnswers = answerPool[rand];
+
+    option1.textContent = questionAnswers[0];
+    option2.textContent = questionAnswers[1];
+    option3.textContent = questionAnswers[2];
+    option4.textContent = questionAnswers[3];
+
+
+if (quizStatement.textContent === questionPool[0]) {
+    option1.setAttribute("data-selected", "false");
+    option2.setAttribute("data-selected", "true");
+    option3.setAttribute("data-selected", "false");
+    option4.setAttribute("data-selected", "false");
+} else if (quizStatement.textContent === questionPool[1]){
+    option1.setAttribute("data-selected", "false");
+    option2.setAttribute("data-selected", "false");
+    option3.setAttribute("data-selected", "true");
+    option4.setAttribute("data-selected", "false");
+} else if (quizStatement.textContent === questionPool[2]){
+    option1.setAttribute("data-selected", "false");
+    option2.setAttribute("data-selected", "true");
+    option3.setAttribute("data-selected", "false");
+    option4.setAttribute("data-selected", "false");
+} else if (quizStatement.textContent === questionPool[3]){
+    option1.setAttribute("data-selected", "true");
+    option2.setAttribute("data-selected", "false");
+    option3.setAttribute("data-selected", "false");
+    option4.setAttribute("data-selected", "false");
+} else if (quizStatement.textContent === questionPool[4]){
+    option1.setAttribute("data-selected", "false");
+    option2.setAttribute("data-selected", "false");
+    option3.setAttribute("data-selected", "false");
+    option4.setAttribute("data-selected", "true");
+} else {
+}
 }
 
 
@@ -98,11 +136,11 @@ console.log(bool);
 if (bool === "true") {
     answerResult.textContent = "Nice Job!";
     console.log('it worked true');
-    // new question function here
+    questionSelect();
 } else if (bool === "false") {
     answerResult.textContent = "WRONG! MINUS 15 POINT!";
     console.log('it worked false');
-    // new question function here
+    questionSelect();
 } else {
     alert("An error has occured, please contact your local pigeon dealer");
     return;
