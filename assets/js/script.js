@@ -21,6 +21,7 @@
 
 // ----------- VARIABLES ----------- 
 
+const quizStart = document.querySelector("#quizstart");
 const quizArea = document.querySelector("#quizarea");
 const quizStatement = document.querySelector("#quizstatement");
 const quizAnswers = document.querySelector("#quizanswers");
@@ -76,6 +77,34 @@ const answerPool = [answers1, answers2, answers3, answers4, answers5];
 
 // ----------- FUNCTIONS AND EVENTS ----------- 
 
+// Quiz start button - on click it hides the start screen and reveals the quiz content
+
+quizStart.addEventListener("click", function(event){
+    let selectedButton = event.target
+    
+    if (selectedButton.matches("button") === true) {
+        quizStart.setAttribute("style", "display:none");
+        quizArea.setAttribute("style", "display:flex")
+        questionSelect()
+    } else {
+    
+    }
+    
+    })
+
+// setAllFalse is used to reset data attributes to their base values
+
+function setAllFalse() {
+    option1.setAttribute("data-selected", "false");
+    option2.setAttribute("data-selected", "false");
+    option3.setAttribute("data-selected", "false");
+    option4.setAttribute("data-selected", "false");
+}
+
+// questionSelect generates a random number that is used to select a random question and matching question answers from the question and answer pool arrays
+// The selected question is then checked with an if statement, and if true, the correct button answer is assigned 'true' for that question
+// Before setting an option to true, all questions are set to false to prevent any carryover from the previous question
+
 function questionSelect() {
     rand = Math.floor(Math.random() * 5);
     quizStatement.textContent = questionPool[rand];
@@ -88,34 +117,23 @@ function questionSelect() {
     option4.textContent = questionAnswers[3];
 
 if (quizStatement.textContent === questionPool[0]) {
-    option1.setAttribute("data-selected", "false");
+    setAllFalse();
     option2.setAttribute("data-selected", "true");
-    option3.setAttribute("data-selected", "false");
-    option4.setAttribute("data-selected", "false");
 } else if (quizStatement.textContent === questionPool[1]){
-    option1.setAttribute("data-selected", "false");
-    option2.setAttribute("data-selected", "false");
+    setAllFalse();
     option3.setAttribute("data-selected", "true");
-    option4.setAttribute("data-selected", "false");
 } else if (quizStatement.textContent === questionPool[2]){
-    option1.setAttribute("data-selected", "false");
+    setAllFalse();
     option2.setAttribute("data-selected", "true");
-    option3.setAttribute("data-selected", "false");
-    option4.setAttribute("data-selected", "false");
 } else if (quizStatement.textContent === questionPool[3]){
+    setAllFalse();
     option1.setAttribute("data-selected", "true");
-    option2.setAttribute("data-selected", "false");
-    option3.setAttribute("data-selected", "false");
-    option4.setAttribute("data-selected", "false");
 } else if (quizStatement.textContent === questionPool[4]){
-    option1.setAttribute("data-selected", "false");
-    option2.setAttribute("data-selected", "false");
-    option3.setAttribute("data-selected", "false");
+    setAllFalse();
     option4.setAttribute("data-selected", "true");
 } else {
 }
 }
-
 
 // This event listener function targets the button clicked and fetches the data-selected property of the button. If it is "true" (string) then you get a positive message, if "false" (also string) you get a negative message
 // first checks for click within quizAnsers ID, then assigns selectedButton to the event target of your click (the specific button you click) ->
