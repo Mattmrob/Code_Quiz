@@ -31,12 +31,54 @@ const option2 = document.querySelector("#option2");
 const option3 = document.querySelector("#option3");
 const option4 = document.querySelector("#option4");
 
-const quizQuestion = "Test";
-const currentQuestion = [[quizQuestion], [option1, option2, option3, option4]];
+const currentQuestion = [[quizStatement], [option1, option2, option3, option4]];
 
 let bool = "";
+let rand = "";
+
+// ----------- QUESTION POOL ----------- 
+
+const question1 = "In coding, a boolean is known as a(n):";
+const answers1 = ["Object","Data-Type","Statement","Element"];
+
+const question2 = "Which one of these values is considered a falsey value?";
+const answers2 = ["1", "Not True", "0", "-1"];
+
+const question3 = "It is considered good practice to link this kind of style sheet before any others in your html document:";
+const answers3 = ["A Bling Sheet", "A Reset Sheet", "A Rap Sheet", "A Base Sheet"];
+
+const question4 = "What does the <p> tag do in an html document?";
+const answers4 = ["Create a Paragraph Element","Create a P-Icon","Add Parenthesis to a Statement","Pair two Elements"];
+
+const question5 = "What is the primary function of a For Loop?";
+const answers5 = ["To continuously loop","Loop every time For is mentioned","Refresh the current page","To continuously loop under specified conditions"];
+
+const question6 = "";
+const answers6 = [];
+
+const question7 = "";
+const answers7 = [];
+
+const question8 = "";
+const answers8 = [];
+
+const question9 = "";
+const answers9 = [];
+
+const question10 = "";
+const answers10 = [];
+
+const questionPool = [question1, question2, question3, question4, question5];
+const answerPool = [answers1, answers2, answers3, answers4, answers5];
+
 
 // ----------- FUNCTIONS AND EVENTS ----------- 
+
+function questionSelect() {
+    rand = Math.floor(Math.random() * 10);
+    
+}
+
 
 // This event listener function targets the button clicked and fetches the data-selected property of the button. If it is "true" (string) then you get a positive message, if "false" (also string) you get a negative message
 // first checks for click within quizAnsers ID, then assigns selectedButton to the event target of your click (the specific button you click) ->
@@ -56,9 +98,11 @@ console.log(bool);
 if (bool === "true") {
     answerResult.textContent = "Nice Job!";
     console.log('it worked true');
+    // new question function here
 } else if (bool === "false") {
     answerResult.textContent = "WRONG! MINUS 15 POINT!";
     console.log('it worked false');
+    // new question function here
 } else {
     alert("An error has occured, please contact your local pigeon dealer");
     return;
