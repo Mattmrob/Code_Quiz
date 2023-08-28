@@ -10,6 +10,17 @@ body {
     width: 100vw;
 }
 
+h1 {
+    font-family: sans-serif;
+    line-height: 120%;
+    margin: 20px 20px 55px 20px;
+}
+
+p {
+    text-align: center;
+    padding: 0 0 20px 0;
+}
+
 a {
     color: black;
     text-decoration: none;
@@ -33,6 +44,17 @@ button {
     border: 1px solid purple;
 }
 
+#quizstart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    width: 800px;
+    padding: 0px 0px 10% 0px;
+    border: 1px solid blue;
+}
+
 #quizarea {
     display: flex;
     flex-direction: column;
@@ -42,6 +64,7 @@ button {
     width: 800px;
     padding: 0px 0px 10% 0px;
     border: 1px solid blue;
+    display: none;
 }
 
 #quizstatement {
@@ -81,10 +104,21 @@ a:hover {
     align-items: space-evenly;
     }
 
+    h1 {
+        font-size: 1.6em;
+        margin: 0px 20px 20px 20px;
+    }
+
     .sidebar {
         width: auto;
         text-align: center;
         padding: 10px 0px 10px 0px;
+    }
+
+    #quizstart {
+        padding: 0px 0px 0px 0px;
+        height: auto;
+        width: auto;
     }
 
     #quizarea {

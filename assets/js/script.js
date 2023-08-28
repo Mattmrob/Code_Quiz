@@ -87,7 +87,6 @@ function questionSelect() {
     option3.textContent = questionAnswers[2];
     option4.textContent = questionAnswers[3];
 
-
 if (quizStatement.textContent === questionPool[0]) {
     option1.setAttribute("data-selected", "false");
     option2.setAttribute("data-selected", "true");
