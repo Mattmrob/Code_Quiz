@@ -40,6 +40,8 @@ const option4 = document.querySelector("#option4");
 const timer = document.querySelector("#timer");
 let timeRemaining = 99;
 
+let questionsAnswered = 0;
+
 let bool = "";
 let rand = "";
 let questionAnswers = "";
@@ -117,6 +119,17 @@ quizStart.addEventListener("click", function(event){
     
     })
 
+
+// Quiz Finished function
+
+function quizFinish() {
+    quizArea.setAttribute("style", "display:none");
+    quizStart.setAttribute("style", "display:flex");
+    startEndMessage.textContent = "Yay!";
+    startEndDetail.textContent = "This is a test";
+    beginQuizButton.textContent = "Go Again?";
+}
+
 // Quiz Game Over function
 
 function gameoverScreen() {
@@ -131,7 +144,58 @@ function gameoverScreen() {
 
 function init() {
     timeRemaining = 99;
+    questionsAnswered = 0;
 }
+
+// TIMER FUNCTION
+
+function timerStart() {
+    let countDown = setInterval(function() {
+    timeRemaining--;
+    timer.textContent = "Timer: " + timeRemaining;
+
+    if(timeRemaining < 1) {
+        clearInterval(countDown);
+        timeRemaining = 0;
+        timer.textContent = "Timer: " + timeRemaining;
+        gameoverScreen();
+    } else if (questionsAnswered === 8){
+        clearInterval(countDown);
+        quizFinish()
+    }
+    }, 1000)
+}
+
+
+// ANSWER SELECTION
+
+// This event listener function targets the button clicked and fetches the data-selected property of the button. If it is "true" (string) then you get a positive message, if "false" (also string) you get a negative message
+// first checks for click within quizAnsers ID, then assigns selectedButton to the event target of your click (the specific button you click) ->
+// then checks to make sure you clicked on a button, and if so, assigns data-selected value of that button to variable bool
+// bool is then checked to see if the data-selected is "false" or "true"
+// From here a new question would be assigned, timer would be influenced, and the quiz would go on
+
+quizAnswers.addEventListener("click", function(event) {
+
+let selectedButton = event.target;
+
+if (selectedButton.matches("button") === true) {
+bool = selectedButton.getAttribute("data-selected");
+}
+
+if (bool === "true") {
+    answerResult.textContent = "Nice Job!";
+    questionsAnswered = questionsAnswered + 1
+    questionSelect();
+} else if (bool === "false") {
+    answerResult.textContent = "WRONG! MINUS 15 POINT!";
+    timeRemaining = timeRemaining - 15;
+    questionSelect();
+} else {
+    alert("An error has occured, please contact your local pigeon dealer");
+    return;
+}
+})
 
 // setAllFalse is used to reset data attributes to their base values
 
@@ -204,56 +268,5 @@ if (quizStatement.textContent === questionPool[0]) {
     option4.setAttribute("data-selected", "true");
 } else {}
 }
-
-// TIMER FUNCTION
-
-function timerStart() {
-    let countDown = setInterval(function() {
-    timeRemaining--;
-    timer.textContent = "Timer: " + timeRemaining;
-
-    if(timeRemaining < 1) {
-        clearInterval(countDown);
-        timeRemaining = 0;
-        timer.textContent = "Timer: " + timeRemaining;
-        gameoverScreen();
-    }
-    }, 1000)
-}
-
-
-// ANSWER SELECTION
-
-// This event listener function targets the button clicked and fetches the data-selected property of the button. If it is "true" (string) then you get a positive message, if "false" (also string) you get a negative message
-// first checks for click within quizAnsers ID, then assigns selectedButton to the event target of your click (the specific button you click) ->
-// then checks to make sure you clicked on a button, and if so, assigns data-selected value of that button to variable bool
-// bool is then checked to see if the data-selected is "false" or "true"
-// From here a new question would be assigned, timer would be influenced, and the quiz would go on
-
-quizAnswers.addEventListener("click", function(event) {
-
-let selectedButton = event.target;
-
-if (selectedButton.matches("button") === true) {
-bool = selectedButton.getAttribute("data-selected");
-console.log(bool);
-}
-
-if (bool === "true") {
-    answerResult.textContent = "Nice Job!";
-    console.log('it worked true');
-    questionSelect();
-} else if (bool === "false") {
-    answerResult.textContent = "WRONG! MINUS 15 POINT!";
-    console.log('it worked false');
-    timeRemaining = timeRemaining - 15;
-    questionSelect();
-} else {
-    alert("An error has occured, please contact your local pigeon dealer");
-    return;
-}
-
-
-})
 
 
