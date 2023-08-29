@@ -50,6 +50,11 @@ button {
     border: 1px solid purple;
 }
 
+.answerbutton {
+    width: 300px;
+    height: 60px;
+}
+
 #quizstart {
     display: flex;
     flex-direction: column;
@@ -105,9 +110,6 @@ button {
     font-size: 2em;
     padding: 10px;
     text-align: center;
-}
-
-#submitScore {
 }
 
 button:hover {
