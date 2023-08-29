@@ -74,8 +74,8 @@ function quizFinish() {
     quizArea.setAttribute("style", "display:none");
     quizStart.setAttribute("style", "display:flex");
     submissionMenu.setAttribute("style", "display:flex");
-    startEndMessage.textContent = "Yay!";
-    startEndDetail.textContent = "This is a test";
+    startEndMessage.textContent = "Quiz Complete!";
+    startEndDetail.textContent = "Good job! Submit your initials below to save your time to the scoreboard!";
     beginQuizButton.textContent = "Go Again?";
 }
 
@@ -89,14 +89,19 @@ function gameoverScreen() {
     beginQuizButton.textContent = "Try Again?";
 }
 
-// Quiz Score Listener
+// Quiz Score Submissions (enter or click button)
+
 submitScore.addEventListener("click", function(event){
     event.preventDefault();
+    submissionMenu.setAttribute("style", "display:none");
+    startEndDetail.textContent = "Score Submitted! Play again?";
     // Run Score Saving Stuff Here
 }) 
 
 yourInitials.addEventListener("submit", function(event){
     event.preventDefault();
+    submissionMenu.setAttribute("style", "display:none");
+    startEndDetail.textContent = "Score Submitted! Play again?";
     // Run Score Saving Stuff Here
 }) 
 
@@ -251,7 +256,7 @@ const answers5 = ["To continuously loop","Loop every time For is mentioned","Ref
 const question6 = "Which one of these is not a Coding Language?";
 const answers6 = ["HTML", "EMS", "CSS", "JS"];
 
-const question7 = "What is the purpose of a REAMDE file?";
+const question7 = "What is the purpose of a README file?";
 const answers7 = ["Provide information on a project", "Provide an intresting narritive story", "Provide text for a webpage", "Provide readable code"];
 
 const question8 = "What is 'this'?";
