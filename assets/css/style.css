@@ -92,6 +92,10 @@ button {
     padding-top: 10px;
 }
 
+#submissionMenu {
+    display: none;
+}
+
 button:hover {
     background-color: slategray;
 }
