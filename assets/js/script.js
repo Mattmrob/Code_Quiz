@@ -108,6 +108,7 @@ quizStart.addEventListener("click", function(event){
     if (selectedButton.matches("button") === true) {
         quizStart.setAttribute("style", "display:none");
         quizArea.setAttribute("style", "display:flex");
+        init();
         questionSelect();
         timerStart();
     } else {
@@ -124,6 +125,12 @@ function gameoverScreen() {
     startEndMessage.textContent = "Times Up!";
     startEndDetail.textContent = "You ran out of time! If you would like to try the quiz again, please click below!";
     beginQuizButton.textContent = "Try Again?";
+}
+
+// Initialize Function - run every time a quiz starts / restarts
+
+function init() {
+    timeRemaining = 99;
 }
 
 // setAllFalse is used to reset data attributes to their base values
@@ -207,7 +214,8 @@ function timerStart() {
 
     if(timeRemaining < 1) {
         clearInterval(countDown);
-        timer.textContent = "Timer: 0";
+        timeRemaining = 0;
+        timer.textContent = "Timer: " + timeRemaining;
         gameoverScreen();
     }
     }, 1000)
