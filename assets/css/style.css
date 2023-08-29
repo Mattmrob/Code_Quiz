@@ -17,6 +17,11 @@ h1 {
     text-align: center;
 }
 
+h3 {
+    font-size: 1.5em;
+    font-weight: lighter;
+}
+
 p {
     text-align: center;
     padding: 0 0 20px 0;
@@ -38,7 +43,7 @@ button {
 }
 
 .sidebar {
-    width: 120px;
+    width: 200px;
     text-align: center;
     padding: 10% 0px 10% 0px;
     margin: 0px 10px 0px 10px;
@@ -98,7 +103,7 @@ a:hover {
 
 /* -------------- FOR MOBILE -------------- */
 
-@media (max-width: 580px) {
+@media (max-width: 1050px) {
 
     body {
     flex-direction: column;
@@ -110,6 +115,10 @@ a:hover {
         margin: 0px 20px 20px 20px;
     }
 
+    h3 {
+        font-size: 2em;
+    }
+
     .sidebar {
         width: auto;
         text-align: center;
@@ -118,13 +127,13 @@ a:hover {
 
     #quizstart {
         padding: 0px 0px 0px 0px;
-        height: auto;
+        height: 400px;
         width: auto;
     }
 
     #quizarea {
         padding: 0px 0px 0px 0px;
-        height: auto;
+        height: 400px;
         width: auto;
     }
 
