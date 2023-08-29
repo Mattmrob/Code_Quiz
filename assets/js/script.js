@@ -22,6 +22,11 @@
 // ----------- VARIABLES ----------- 
 
 const quizStart = document.querySelector("#quizstart");
+const startEndMessage = document.querySelector("#startEndMessage");
+const startEndDetail = document.querySelector("#startEndDetail");
+const beginQuizButton = document.querySelector("#beginquiz");
+
+
 const quizArea = document.querySelector("#quizarea");
 const quizStatement = document.querySelector("#quizstatement");
 const quizAnswers = document.querySelector("#quizanswers");
@@ -111,6 +116,16 @@ quizStart.addEventListener("click", function(event){
     
     })
 
+// Quiz Game Over function
+
+function gameoverScreen() {
+    quizArea.setAttribute("style", "display:none");
+    quizStart.setAttribute("style", "display:flex");
+    startEndMessage.textContent = "Times Up!";
+    startEndDetail.textContent = "You ran out of time! If you would like to try the quiz again, please click below!";
+    beginQuizButton.textContent = "Try Again?";
+}
+
 // setAllFalse is used to reset data attributes to their base values
 
 function setAllFalse() {
@@ -183,7 +198,7 @@ if (quizStatement.textContent === questionPool[0]) {
 } else {}
 }
 
-// TIMER FUNCTION AND QUIZ END
+// TIMER FUNCTION
 
 function timerStart() {
     let countDown = setInterval(function() {
@@ -193,10 +208,13 @@ function timerStart() {
     if(timeRemaining < 1) {
         clearInterval(countDown);
         timer.textContent = "Timer: 0";
+        gameoverScreen();
     }
     }, 1000)
 }
 
+
+// ANSWER SELECTION
 
 // This event listener function targets the button clicked and fetches the data-selected property of the button. If it is "true" (string) then you get a positive message, if "false" (also string) you get a negative message
 // first checks for click within quizAnsers ID, then assigns selectedButton to the event target of your click (the specific button you click) ->
