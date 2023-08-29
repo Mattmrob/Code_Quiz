@@ -25,12 +25,15 @@ const quizStart = document.querySelector("#quizstart");
 const quizArea = document.querySelector("#quizarea");
 const quizStatement = document.querySelector("#quizstatement");
 const quizAnswers = document.querySelector("#quizanswers");
-let answerResult = document.querySelector("#answer-result");
+const answerResult = document.querySelector("#answer-result");
 
 const option1 = document.querySelector("#option1");
 const option2 = document.querySelector("#option2");
 const option3 = document.querySelector("#option3");
 const option4 = document.querySelector("#option4");
+
+const timer = document.querySelector("#timer");
+let timeRemaining = 99;
 
 let bool = "";
 let rand = "";
@@ -99,8 +102,9 @@ quizStart.addEventListener("click", function(event){
     
     if (selectedButton.matches("button") === true) {
         quizStart.setAttribute("style", "display:none");
-        quizArea.setAttribute("style", "display:flex")
-        questionSelect()
+        quizArea.setAttribute("style", "display:flex");
+        questionSelect();
+        timerStart();
     } else {
     
     }
@@ -179,6 +183,21 @@ if (quizStatement.textContent === questionPool[0]) {
 } else {}
 }
 
+// TIMER FUNCTION AND QUIZ END
+
+function timerStart() {
+    let countDown = setInterval(function() {
+    timeRemaining--;
+    timer.textContent = "Timer: " + timeRemaining;
+
+    if(timeRemaining < 1) {
+        clearInterval(countDown);
+        timer.textContent = "Timer: 0";
+    }
+    }, 1000)
+}
+
+
 // This event listener function targets the button clicked and fetches the data-selected property of the button. If it is "true" (string) then you get a positive message, if "false" (also string) you get a negative message
 // first checks for click within quizAnsers ID, then assigns selectedButton to the event target of your click (the specific button you click) ->
 // then checks to make sure you clicked on a button, and if so, assigns data-selected value of that button to variable bool
@@ -201,6 +220,7 @@ if (bool === "true") {
 } else if (bool === "false") {
     answerResult.textContent = "WRONG! MINUS 15 POINT!";
     console.log('it worked false');
+    timeRemaining = timeRemaining - 15;
     questionSelect();
 } else {
     alert("An error has occured, please contact your local pigeon dealer");
