@@ -5,6 +5,8 @@ const startEndMessage = document.querySelector("#startEndMessage");
 const startEndDetail = document.querySelector("#startEndDetail");
 const beginQuizButton = document.querySelector("#beginquiz");
 
+const sidebar = document.querySelector(".sidebar");
+
 const quizArea = document.querySelector("#quizarea");
 const quizStatement = document.querySelector("#quizstatement");
 const quizAnswers = document.querySelector("#quizanswers");
@@ -23,10 +25,14 @@ const submitScore = document.querySelector('#submitScore');
 const yourInitials = document.querySelector('#yourInitials');
 const submissionMenu = document.querySelector('#submissionMenu');
 
+const scoreBoardPage = document.querySelector('#scoreBoardPage');
+const scoreBoardButton = document.querySelector('#scoreBoardButton');
 const scoreBoard = document.querySelector('#scoreBoard');
+const scoreContainer = document.querySelector('#scoreContainer');
 const scoreBoardItem = document.querySelector('.scoreBoardItem');
 let scores = [];
 let scoreText = "";
+
 
 let bool = "";
 let rand = "";
@@ -53,6 +59,19 @@ beginQuizButton.addEventListener("click", function(event){
     }
     
     })
+
+// Open Scoreboard Function
+
+scoreBoardButton.addEventListener("click", function(){
+
+    quizArea.setAttribute("style", "display:none");
+    quizStart.setAttribute("style", "display:none");
+    submissionMenu.setAttribute("style", "display:none");
+    scoreBoardButton.setAttribute("style", "display:none");
+    timer.setAttribute("style", "display:none");
+    scoreBoardPage.setAttribute("style", "display:flex");
+
+})
 
 // Quiz Finished function
 
@@ -91,7 +110,6 @@ submitScore.addEventListener("click", function(event){
     scores.push(scoreText);
     yourInitials.value = "";
     storeScore();
-    init();
 
     // submissionMenu.setAttribute("style", "display:none");
     startEndDetail.textContent = "Score Submitted! Play again?";
@@ -109,7 +127,6 @@ yourInitials.addEventListener("submit", function(event){
     scores.push(scoreText);
     yourInitials.value = "";
     storeScore();
-    init();
 
     // submissionMenu.setAttribute("style", "display:none");
     startEndDetail.textContent = "Score Submitted! Play again?";
@@ -121,14 +138,32 @@ function storeScore() {
     localStorage.setItem("score", JSON.stringify(scores));
 }
 
+// Render Scores on Score Page
+
+function renderScores() {
+    for (let i = 0; i < scores.length; i++) {
+
+        let score = scores[i];
+        let li = document.createElement("li");
+        li.textContent = score;
+        scoreContainer.appendChild(li);
+      }
+}
+
 // Initialize Function - Grabs score data
 
 function init() {
     let storedScores = JSON.parse(localStorage.getItem("score"));
+    console.log(storedScores);
+    console.log(scores);
 
     if (storedScores !== null) {
-        score = storedScores;
+        scores = storedScores;
       }
+
+    console.log(scores);
+
+    renderScores();
 }
 
 // Quiz Start Function
