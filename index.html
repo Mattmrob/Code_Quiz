@@ -5,13 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <title>Coding Quiz!</title>
+    <title>Coding Quiz</title>
 </head>
 
 <body>
+
+<!-- SCOREBOARD BUTTON - This is the button that renders the scoreboard -->
+
+<div class="sidebar">
+    <h3><a id="scoreBoardButton">Scoreboard</a></h3>
+</div>
+
+<!-- START/END - This is where the quiz start and end info appears -->
+
+<div id="quizstart">
+
+    <h1 id="startEndMessage">Welcome to the Coding Quiz!</h1>
+    <p id="startEndDetail">
+        During the quiz you will have 99 seconds to answer 10 questions. <br>
+        Every question you answer wrong will reduce the timer by 15 seconds! <br>
+        Complete the quiz within the limit and submit your remaining time as score. <br>
+        Are you Ready to Play?
+    </p>
+
+    <form id="submissionMenu">
+        <input id="yourInitials" type="text" maxlength="3" />
+        <button id="submitScore">Submit Score</button>
+    </form>
+
+    <button id="beginquiz">Start the Quiz!</button>
+
+</div>
+
+<!-- QUIZ AREA - This is where the questions are asked -->
+
+<div id="quizarea">
+
+    <h1 id="quizstatement">Quiz Question - If you had twenty woodpeckers in a box, would the wood peckers peck through the wood box?</h1>
+    <div id="quizanswers">
+        <button id="option1" class="answerbutton" data-selected="false">They could if they really wanted to.</button>
+        <button id="option2" class="answerbutton" data-selected="false">They probably would not, because they are not that smart.</button>
+        <button id="option3" class="answerbutton" data-selected="false">Yes they would, because the box is wood.</button>
+        <button id="option4" class="answerbutton" data-selected="false">How did you get twenty wood peckers in a box?</button>
+    </div>
     
-    
-    
-    <script src="assets/js/script.js"></script>
+    <h4 id="answer-result"></h4>
+
+</div>
+
+<!-- SCOREBOARD - This is the scoreboard -->
+
+<div id="scoreBoardPage">
+
+    <h2><a id="returnToQuiz">Return to Quiz</a></h2>
+
+    <div id="scoreBoard">
+
+        <h3 id="scoreBoardTitle">SCORE BOARD</h3>
+        <ul id="scoreContainer"></ul>
+
+    </div>
+
+    <h2 id="clearScores">Clear Your Scores</h2>
+
+</div>
+
+<!-- TIMER - This is the timer -->
+
+<h3 class="sidebar"><div id="timer">Time: 99</div></h3>
+
+
+
+<script src="assets/js/script.js"></script>
 </body>
 </html>

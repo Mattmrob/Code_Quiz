@@ -1,0 +1,278 @@
+* {
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100vh;
+    width: 100vw;
+}
+
+h1 {
+    font-family: sans-serif;
+    line-height: 120%;
+    margin: 20px 20px 55px 20px;
+    text-align: center;
+}
+
+h2 {
+    font-weight: lighter;
+    margin: 50px;
+}
+
+h3 {
+    font-size: 1.5em;
+    font-weight: lighter;
+}
+
+p {
+    text-align: center;
+    padding: 0 0 20px 0;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    font-family: sans-serif;
+    color: white;
+    padding: 10px 12px 10px 12px;
+    margin: 7px;
+    background-color: teal;
+    border: 0px;
+    border-radius: 10px;
+}
+
+/* Sidebar is for timer and scoreboard buttons */
+.sidebar {
+    width: 200px;
+    text-align: center;
+    padding: 10% 0px 10% 0px;
+    margin: 0px 10px 0px 10px;
+}
+
+/* answerbuttons are the correct/false answer buttons during the quiz */
+.answerbutton {
+    width: 300px;
+    height: 60px;
+}
+
+/* Initial Quiz-Start Screen layout */
+#quizstart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    width: 800px;
+    padding: 0px 0px 10% 0px;
+}
+
+/* Quiz Question Screen */
+#quizarea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    width: 800px;
+    padding: 0px 0px 10% 0px;
+    display: none;
+}
+
+/* Question asked during quiz */
+#quizstatement {
+    font-family: sans-serif;
+    line-height: 120%;
+    margin: 20px 20px 55px 20px;
+}
+
+/* Answer button container */
+#quizanswers {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Good or Bad answer message */
+#answer-result {
+    text-align: center;
+    font-style: italic;
+    color: grey;
+    text-decoration: underline;
+    padding-top: 10px;
+}
+
+/* Container containing submission form */
+#submissionMenu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 0 15px 0;
+    display: none;
+}
+
+/* Input form */
+#yourInitials {
+    height: 50px;
+    width: 100px;
+    font-size: 2em;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Click to visit scoreboard */
+#scoreBoardButton {
+    width:auto;
+}
+
+/* Scoreboard container */
+#scoreBoardPage{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: auto;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+/* Leave scoreboard page */
+#returnToQuiz {
+    padding: 30px 0 30px 0;
+}
+
+/* Scoreboard itself */
+#scoreBoard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    border: 2px solid slateblue;
+}
+
+/* Title for scoreboard */
+#scoreBoardTitle {
+    font-size: 3em;
+    text-align: center;
+}
+
+/* ul that contains scoreboarditems */
+#scoreContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    width: 400px;
+}
+
+/* Scoreboard list item */
+.scoreBoardItem {
+    font-size: 1.5em;
+    font-weight: lighter;
+    text-align: center;
+    font-style: italic;
+    width: 400px;
+    list-style: none;
+    padding: 5px;
+    border-top: 2px solid slateblue;
+}
+
+button:hover {
+    background-color: slategray;
+}
+
+/* makes on click function look like a link x3 */
+#scoreBoardButton:hover {
+    color: slateblue;
+    cursor: pointer;
+}
+
+#returnToQuiz:hover {
+    color: slateblue;
+    cursor: pointer;
+}
+
+#clearScores:hover {
+    color: slateblue;
+    cursor: pointer;
+}
+
+
+
+/* -------------- FOR MOBILE -------------- */
+
+@media (max-width: 1050px) {
+
+    body {
+    flex-direction: column;
+    align-items: space-evenly;
+    }
+
+    h1 {
+        font-size: 1.6em;
+        margin: 0px 20px 20px 20px;
+    }
+
+    h3 {
+        font-size: 2em;
+    }
+
+    .sidebar {
+        width: auto;
+        text-align: center;
+        padding: 10px 0px 10px 0px;
+    }
+
+    #quizstart {
+        padding: 0px 0px 0px 0px;
+        height: 400px;
+        width: auto;
+    }
+
+    #quizarea {
+        padding: 0px 0px 0px 0px;
+        height: 400px;
+        width: auto;
+    }
+
+    #quizstatement {
+        font-size: 1.6em;
+        margin: 0px 20px 20px 20px;
+    }
+}
+
+/* Scoreboard breakpoint */
+
+@media (max-width: 409px) {
+
+    #scoreBoard {
+        width: 300px;
+    }
+    
+    #scoreBoardTitle {
+        font-size: 2em;
+    }
+
+    #scoreContainer {
+        display: flex;
+        margin: 0px;
+        padding: 0px;
+        width: 300px;
+    }
+    
+    .scoreBoardItem {
+        font-size: 1.2em;
+        width: 300px;
+    }
+
+}
