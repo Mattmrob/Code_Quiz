@@ -5,7 +5,6 @@ const startEndMessage = document.querySelector("#startEndMessage");
 const startEndDetail = document.querySelector("#startEndDetail");
 const beginQuizButton = document.querySelector("#beginquiz");
 
-
 const quizArea = document.querySelector("#quizarea");
 const quizStatement = document.querySelector("#quizstatement");
 const quizAnswers = document.querySelector("#quizanswers");
@@ -26,7 +25,8 @@ const submissionMenu = document.querySelector('#submissionMenu');
 
 const scoreBoard = document.querySelector('#scoreBoard');
 const scoreBoardItem = document.querySelector('.scoreBoardItem');
-let score = [];
+let scores = [];
+let scoreText = "";
 
 let bool = "";
 let rand = "";
@@ -43,7 +43,10 @@ beginQuizButton.addEventListener("click", function(event){
     if (selectedButton.matches("button") === true) {
         quizStart.setAttribute("style", "display:none");
         quizArea.setAttribute("style", "display:flex");
-        init();
+        timeRemaining = 99;
+        questionsAnswered = 0;
+        submissionMenu.setAttribute("style", "display:none");
+        answerResult.textContent = "";
         questionSelect();
         timerStart();
     } else {
@@ -72,30 +75,63 @@ function gameoverScreen() {
     beginQuizButton.textContent = "Try Again?";
 }
 
+// SCORE SAVING AND DISPLAYING
+
 // Quiz Score Submissions (enter or click button)
 
 submitScore.addEventListener("click", function(event){
     event.preventDefault();
-    submissionMenu.setAttribute("style", "display:none");
 
+    if (yourInitials.value === "") {
+        return;
+      }
+
+    scoreText = yourInitials.value + " Score:" + timeRemaining;
+    console.log(scoreText);
+    scores.push(scoreText);
+    yourInitials.value = "";
+    storeScore();
+    init();
+
+    // submissionMenu.setAttribute("style", "display:none");
     startEndDetail.textContent = "Score Submitted! Play again?";
 }) 
 
 yourInitials.addEventListener("submit", function(event){
     event.preventDefault();
-    submissionMenu.setAttribute("style", "display:none");
 
+    if (yourInitials.value === "") {
+        return;
+      }
+
+    scoreText = yourInitials.value + " Score:" + timeRemaining;
+    console.log(scoreText);
+    scores.push(scoreText);
+    yourInitials.value = "";
+    storeScore();
+    init();
+
+    // submissionMenu.setAttribute("style", "display:none");
     startEndDetail.textContent = "Score Submitted! Play again?";
 }) 
 
-// Initialize Function - run every time a quiz starts / restarts
+// Store Score Locally
+
+function storeScore() {
+    localStorage.setItem("score", JSON.stringify(scores));
+}
+
+// Initialize Function - Grabs score data
 
 function init() {
-    timeRemaining = 99;
-    questionsAnswered = 0;
-    submissionMenu.setAttribute("style", "display:none");
-    answerResult.textContent = "";
+    let storedScores = JSON.parse(localStorage.getItem("score"));
+
+    if (storedScores !== null) {
+        score = storedScores;
+      }
 }
+
+// Quiz Start Function
 
 // TIMER FUNCTION
 
@@ -269,5 +305,7 @@ const answers15 = ["&& is either, || is both","&& is neither, || is either","&& 
 const questionPool = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13, question14, question15];
 const answerPool = [answers1, answers2, answers3, answers4, answers5, answers6, answers7, answers8, answers9, answers10, answers11, answers12, answers13, answers14, answers15];
 const optionPool = [option1, option2, option3, option4];
+
+init();
 
 
