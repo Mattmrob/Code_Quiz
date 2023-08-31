@@ -57,6 +57,7 @@ beginQuizButton.addEventListener("click", function(event){
         questionsAnswered = 0;
         submissionMenu.setAttribute("style", "display:none");
         answerResult.textContent = "";
+        scoreBoardButton.textContent = "";
         questionSelect();
         timerStart();
     } else {
@@ -109,6 +110,7 @@ function quizFinish() {
     startEndMessage.textContent = "Quiz Complete!";
     startEndDetail.textContent = "Good job! Submit your initials below to save your time to the scoreboard!";
     beginQuizButton.textContent = "Go Again?";
+    scoreBoardButton.textContent = "Scoreboard";
 }
 
 // Quiz Game Over function
@@ -119,6 +121,7 @@ function gameoverScreen() {
     startEndMessage.textContent = "Times Up!";
     startEndDetail.textContent = "You ran out of time! If you would like to try the quiz again, please click below!";
     beginQuizButton.textContent = "Try Again?";
+    scoreBoardButton.textContent = "Scoreboard";
 }
 
 // SCORE SAVING AND DISPLAYING
