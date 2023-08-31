@@ -28,6 +28,7 @@ const submissionMenu = document.querySelector('#submissionMenu');
 const scoreBoardPage = document.querySelector('#scoreBoardPage');
 const scoreBoardButton = document.querySelector('#scoreBoardButton');
 const returnToQuiz = document.querySelector('#returnToQuiz');
+const clearScores = document.querySelector('#clearScores');
 
 const scoreBoard = document.querySelector('#scoreBoard');
 const scoreContainer = document.querySelector('#scoreContainer');
@@ -90,6 +91,14 @@ returnToQuiz.addEventListener("click", function(){
 
 // Clear Scoreboard
 
+clearScores.addEventListener("click", function(){
+
+scores = [];
+storeScore();
+init();
+
+})
+
 // Quiz Finished function
 
 function quizFinish() {
@@ -127,6 +136,7 @@ submitScore.addEventListener("click", function(event){
     scores.push(scoreText);
     yourInitials.value = "";
     storeScore();
+    renderScores();
 
     // submissionMenu.setAttribute("style", "display:none");
     startEndDetail.textContent = "Score Submitted! Play again?";
@@ -144,6 +154,7 @@ yourInitials.addEventListener("submit", function(event){
     scores.push(scoreText);
     yourInitials.value = "";
     storeScore();
+    renderScores();
 
     // submissionMenu.setAttribute("style", "display:none");
     startEndDetail.textContent = "Score Submitted! Play again?";
@@ -158,6 +169,9 @@ function storeScore() {
 // Render Scores on Score Page
 
 function renderScores() {
+
+    scoreContainer.innerHTML = "";
+
     for (let i = 0; i < scores.length; i++) {
 
         let score = scores[i];
