@@ -1,52 +1,64 @@
-// ----------- VARIABLES ----------- 
+// ------------------- VARIABLES (1) -------------------
+// *Variables relating to the question and answer pools are stored at the bottom of the script*
 
+// Targeting starting/ending screen message, paragraph, and button
 const quizStart = document.querySelector("#quizstart");
 const startEndMessage = document.querySelector("#startEndMessage");
 const startEndDetail = document.querySelector("#startEndDetail");
 const beginQuizButton = document.querySelector("#beginquiz");
 
+// Targeting sidebar(s)
 const sidebar = document.querySelector(".sidebar");
 
+// Targeting Quiz question area, question, answers, and answer results
 const quizArea = document.querySelector("#quizarea");
 const quizStatement = document.querySelector("#quizstatement");
 const quizAnswers = document.querySelector("#quizanswers");
 const answerResult = document.querySelector("#answer-result");
 
+// Targeting answer buttons
 const option1 = document.querySelector("#option1");
 const option2 = document.querySelector("#option2");
 const option3 = document.querySelector("#option3");
 const option4 = document.querySelector("#option4");
 
+// Targeting timer and assigning values to questions answered and time
 const timer = document.querySelector("#timer");
 let timeRemaining = 99;
 let questionsAnswered = 0;
 
+// Targeting form for score submission
 const submitScore = document.querySelector('#submitScore');
 const yourInitials = document.querySelector('#yourInitials');
 const submissionMenu = document.querySelector('#submissionMenu');
 
+// Targeting scoreboard page
 const scoreBoardPage = document.querySelector('#scoreBoardPage');
+const scoreBoard = document.querySelector('#scoreBoard');
+const scoreContainer = document.querySelector('#scoreContainer');
+const scoreBoardItem = document.querySelector('.scoreBoardItem');
+
+// Targeting scoreboard page buttons
 const scoreBoardButton = document.querySelector('#scoreBoardButton');
 const returnToQuiz = document.querySelector('#returnToQuiz');
 const clearScores = document.querySelector('#clearScores');
 
-const scoreBoard = document.querySelector('#scoreBoard');
-const scoreContainer = document.querySelector('#scoreContainer');
-const scoreBoardItem = document.querySelector('.scoreBoardItem');
+// Arrays and data for local data storage
 let scores = [];
 let scoreText = "";
 
-
+// Ect. variables for rng, answers, and index
 let bool = "";
 let rand = "";
 let currentIndex = "";
 let questionAnswers = "";
-let correctAnswer = "";
 
-// ----------- FUNCTIONS AND EVENTS ----------- 
 
-// Quiz start button - on click it hides the start screen and reveals the quiz content
+// ------------------- INTERFACE -------------------
 
+// Quiz start button - on click it resets everything to base value and displays the quiz area, hiding the start area
+// It then starts the question selection logic and starts the timer
+// *it also hides the scoreboard button until the quiz is finished*
 beginQuizButton.addEventListener("click", function(event){
     let selectedButton = event.target
     
@@ -65,8 +77,7 @@ beginQuizButton.addEventListener("click", function(event){
     
     })
 
-// Open Scoreboard Function
-
+// Open Scoreboard Function - opens the scoreboard and hides everything else
 scoreBoardButton.addEventListener("click", function(){
 
     quizArea.setAttribute("style", "display:none");
@@ -78,8 +89,7 @@ scoreBoardButton.addEventListener("click", function(){
 
 })
 
-// Return From Scoreboard
-
+// Return From Scoreboard - returns to quiz starting area from scoreboard
 returnToQuiz.addEventListener("click", function(){
 
     quizStart.setAttribute("style", "display:flex");
@@ -89,18 +99,7 @@ returnToQuiz.addEventListener("click", function(){
 
 })
 
-// Clear Scoreboard
-
-clearScores.addEventListener("click", function(){
-
-scores = [];
-storeScore();
-init();
-
-})
-
-// Quiz Finished function
-
+// Quiz Finished function - When the quiz is completed, the following display changes occur
 function quizFinish() {
     quizArea.setAttribute("style", "display:none");
     quizStart.setAttribute("style", "display:flex");
@@ -111,8 +110,7 @@ function quizFinish() {
     scoreBoardButton.textContent = "Scoreboard";
 }
 
-// Quiz Game Over function
-
+// Quiz Game Over function - When the quiz is ended, the following display changes occur
 function gameoverScreen() {
     quizArea.setAttribute("style", "display:none");
     quizStart.setAttribute("style", "display:flex");
@@ -122,10 +120,17 @@ function gameoverScreen() {
     scoreBoardButton.textContent = "Scoreboard";
 }
 
-// SCORE SAVING AND DISPLAYING
 
-// Quiz Score Submissions (enter or click button)
+// ------------------- SCORES -------------------
 
+// SCORE SAVING - the following two functions do the same things but for different input parameters
+// Prevents default for event then checks if the data the user typed into the submitScore input is a blank or not
+// If not a blank, get info put into the input and add it to the remaining time (see timer function)
+// These two values are then stored in scoreText, which is then added to the scores array
+// The value of the scores array is then stored and the stored value is then rendered
+// Finally the submission menu is hidden and a message appears confirming score submission
+
+// Quiz Score Submissions - on Click
 submitScore.addEventListener("click", function(event){
     event.preventDefault();
 
@@ -144,6 +149,7 @@ submitScore.addEventListener("click", function(event){
     startEndDetail.textContent = "Score Submitted! Play again?";
 }) 
 
+// Quiz Score Submissions - on Submit
 yourInitials.addEventListener("submit", function(event){
     event.preventDefault();
 
@@ -162,30 +168,12 @@ yourInitials.addEventListener("submit", function(event){
     startEndDetail.textContent = "Score Submitted! Play again?";
 }) 
 
-// Store Score Locally
-
+// Store Score Locally - converts scores array into a JSON string for storage
 function storeScore() {
     localStorage.setItem("score", JSON.stringify(scores));
 }
 
-// Render Scores on Score Page
-
-function renderScores() {
-
-    scoreContainer.innerHTML = "";
-
-    for (let i = 0; i < scores.length; i++) {
-
-        let score = scores[i];
-        let li = document.createElement("li");
-        li.setAttribute("class", "scoreBoardItem");
-        li.textContent = score;
-        scoreContainer.appendChild(li);
-      }
-}
-
-// Initialize Function - Grabs score data
-
+// Initialize Function - Grabs stored score array data with a JSON parse then runs renderScores
 function init() {
     let storedScores = JSON.parse(localStorage.getItem("score"));
     console.log(storedScores);
@@ -200,10 +188,36 @@ function init() {
     renderScores();
 }
 
-// Quiz Start Function
+// Render Scores on Score Page - resets current scoreboard render then does a for loop to:
+// render an item for each value in the scores array and display them as text content under a UL as LIs
+function renderScores() {
 
-// TIMER FUNCTION
+    scoreContainer.innerHTML = "";
 
+    for (let i = 0; i < scores.length; i++) {
+
+        let score = scores[i];
+        let li = document.createElement("li");
+        li.setAttribute("class", "scoreBoardItem");
+        li.textContent = score;
+        scoreContainer.appendChild(li);
+      }
+}
+
+// Clear Scoreboard - deletes rendered scoreboard data and saves over the locally saved data as a blank
+clearScores.addEventListener("click", function(){
+
+    scores = [];
+    storeScore();
+    init();
+    
+    })
+
+
+// // ------------------- QUIZ FUNCTIONALITY -------------------
+
+// Timer Function - reduces time remaining by 1 per 1000ms and displays info to page
+// Triggers game over if timer goes below 1 (0), or a completion if the number of questions answered correctly is 10
 function timerStart() {
     let countDown = setInterval(function() {
     timeRemaining--;
@@ -221,14 +235,11 @@ function timerStart() {
     }, 1000)
 }
 
-// ANSWER SELECTION
-
-// This event listener function targets the button clicked and fetches the data-selected property of the button. If it is "true" (string) then you get a positive message, if "false" (also string) you get a negative message
-// first checks for click within quizAnsers ID, then assigns selectedButton to the event target of your click (the specific button you click) ->
-// then checks to make sure you clicked on a button, and if so, assigns data-selected value of that button to variable bool
-// bool is then checked to see if the data-selected is "false" or "true"
-// From here a new question would be assigned, timer would be influenced, and the quiz would go on
-
+// ANSWER SELECTION - Answer Buttons
+// When clicking a button, each button has a data value of either true or false
+// If true, you get a positive message and +1 to total questions answered.
+// If false, time remaining drops by 15s
+// After every selection, the questionselect function is called to select a new question
 quizAnswers.addEventListener("click", function(event) {
 
 let selectedButton = event.target;
@@ -251,8 +262,7 @@ if (bool === "true") {
 }
 })
 
-// setAllFalse is used to reset data attributes to their base values
-
+// setAllFalse is used to reset data attributes for buttons to their base values
 function setAllFalse() {
     option1.setAttribute("data-selected", "false");
     option2.setAttribute("data-selected", "false");
@@ -260,10 +270,15 @@ function setAllFalse() {
     option4.setAttribute("data-selected", "false");
 }
 
-// questionSelect generates a random number that is used to select a random question and matching question answers from the question and answer pool arrays
-// The selected question is then checked with an if statement, and if true, the correct button answer is assigned 'true' for that question
-// Before setting an option to true, all questions are set to false to prevent any carryover from the previous question
+// Question Select - generates a random number to be used for question pool selection
+// First if statement prevents the same question from being selected twice in a row
+// The random number generated will pull from two array pools, the question and answer pool
+// The question pool is an array of questions from index 1-15 and the answer pool is an array of 1-15 with each item being its own array
+// The content for each question option is dependant on the contained array within the selected answerpool array
+// All arrays match up their questions and answers
 
+// Answer Loading (inside Question Select) - a lengthy if statement is then ran that checks which question is currently selected
+// It then applies a false value to all answers and a true answer to the answer pool's corresponding correct answer
 function questionSelect() {
 
     rand = Math.floor(Math.random() * 15);
@@ -331,8 +346,9 @@ if (quizStatement.textContent === questionPool[0]) {
 } else {}
 }
 
-// ----------- QUESTION POOL ----------- 
-// 20 questions to avoid too much repetition, only 10 need to be answered for quiz to end
+
+// ----------- QUESTION POOL / VARIABLES (2) ----------- 
+// Each question is a string while their answers are arrays
 
 const question1 = "In coding, a boolean is known as a(n):";
 const answers1 = ["Object","Data-Type","Statement","Element"];
@@ -379,9 +395,14 @@ const answers14 = ["console.log()", "bug.fix()", "report.data.type()", "define.e
 const question15 = "What is the difference between && and || in JS?";
 const answers15 = ["&& is either, || is both","&& is neither, || is either","&& is either, || is neither","&& is both, || is either"];
 
+// All Questions, answers, and buttons are then stored in arrays.
+// Questionpool index will always match up with their answerpool if the index for both is the same number
+
 const questionPool = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13, question14, question15];
 const answerPool = [answers1, answers2, answers3, answers4, answers5, answers6, answers7, answers8, answers9, answers10, answers11, answers12, answers13, answers14, answers15];
 const optionPool = [option1, option2, option3, option4];
+
+// Page initialization
 
 init();
 
