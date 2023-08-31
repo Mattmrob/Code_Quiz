@@ -82,9 +82,7 @@ scoreBoardButton.addEventListener("click", function(){
 
 returnToQuiz.addEventListener("click", function(){
 
-    quizArea.setAttribute("style", "display:none");
     quizStart.setAttribute("style", "display:flex");
-    submissionMenu.setAttribute("style", "display:none");
     scoreBoardButton.setAttribute("style", "display:default");
     timer.setAttribute("style", "display:default");
     scoreBoardPage.setAttribute("style", "display:none");
