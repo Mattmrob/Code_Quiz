@@ -145,6 +145,7 @@ function renderScores() {
 
         let score = scores[i];
         let li = document.createElement("li");
+        li.setAttribute("class", "scoreBoardItem");
         li.textContent = score;
         scoreContainer.appendChild(li);
       }
