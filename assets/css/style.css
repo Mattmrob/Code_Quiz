@@ -17,6 +17,10 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    font-weight: lighter;
+}
+
 h3 {
     font-size: 1.5em;
     font-weight: lighter;
@@ -113,10 +117,14 @@ button {
 #scoreBoardPage{
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: auto;
     width: auto;
     align-items: center;
     justify-content: center;
+}
+
+#returnToIndex {
+    padding: 30px 0 30px 0;
 }
 
 #scoreBoard {
@@ -124,17 +132,24 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 500px;
-    border: 1px solid slateblue;
+    width: 400px;
+    border: 2px solid slateblue;
 }
 
 #scoreBoardTitle {
     font-size: 3em;
+    
+    padding: 5px 0 0 0;
 }
 
 .scoreBoardItem {
     font-size: 1.5em;
-    border: 1px solid slateblue;
+    font-weight: lighter;
+    text-align: center;
+    font-style: italic;
+    width: 400px;
+    padding: 5px;
+    border-top: 2px solid slateblue;
 
 }
 
