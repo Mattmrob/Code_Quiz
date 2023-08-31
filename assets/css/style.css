@@ -131,15 +131,20 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 400px;
     border: 2px solid slateblue;
 }
 
 #scoreBoardTitle {
     font-size: 3em;
-    
-    padding: 5px 0 0 0;
+    text-align: center;
+}
+
+#scoreContainer {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    width: 400px;
 }
 
 .scoreBoardItem {
@@ -148,9 +153,9 @@ button {
     text-align: center;
     font-style: italic;
     width: 400px;
+    list-style: none;
     padding: 5px;
     border-top: 2px solid slateblue;
-
 }
 
 button:hover {
@@ -202,4 +207,30 @@ a:hover {
         font-size: 1.6em;
         margin: 0px 20px 20px 20px;
     }
+}
+
+/* Scoreboard breakpoint */
+
+@media (max-width: 409px) {
+
+    #scoreBoard {
+        width: 300px;
+    }
+    
+    #scoreBoardTitle {
+        font-size: 2em;
+    }
+
+    #scoreContainer {
+        display: flex;
+        margin: 0px;
+        padding: 0px;
+        width: 300px;
+    }
+    
+    .scoreBoardItem {
+        font-size: 1.2em;
+        width: 300px;
+    }
+
 }

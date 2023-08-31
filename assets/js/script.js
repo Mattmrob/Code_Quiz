@@ -24,6 +24,10 @@ const submitScore = document.querySelector('#submitScore');
 const yourInitials = document.querySelector('#yourInitials');
 const submissionMenu = document.querySelector('#submissionMenu');
 
+const scoreBoard = document.querySelector('#scoreBoard');
+const scoreBoardItem = document.querySelector('.scoreBoardItem');
+let score = [];
+
 let bool = "";
 let rand = "";
 let questionAnswers = "";
@@ -73,15 +77,15 @@ function gameoverScreen() {
 submitScore.addEventListener("click", function(event){
     event.preventDefault();
     submissionMenu.setAttribute("style", "display:none");
+
     startEndDetail.textContent = "Score Submitted! Play again?";
-    // Run Score Saving Stuff Here
 }) 
 
 yourInitials.addEventListener("submit", function(event){
     event.preventDefault();
     submissionMenu.setAttribute("style", "display:none");
+
     startEndDetail.textContent = "Score Submitted! Play again?";
-    // Run Score Saving Stuff Here
 }) 
 
 // Initialize Function - run every time a quiz starts / restarts
