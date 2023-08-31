@@ -25,4 +25,4 @@ n/a
 
 ## License
 
-n/a
+MIT License
