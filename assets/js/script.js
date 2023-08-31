@@ -27,6 +27,8 @@ const submissionMenu = document.querySelector('#submissionMenu');
 
 const scoreBoardPage = document.querySelector('#scoreBoardPage');
 const scoreBoardButton = document.querySelector('#scoreBoardButton');
+const returnToQuiz = document.querySelector('#returnToQuiz');
+
 const scoreBoard = document.querySelector('#scoreBoard');
 const scoreContainer = document.querySelector('#scoreContainer');
 const scoreBoardItem = document.querySelector('.scoreBoardItem');
@@ -72,6 +74,21 @@ scoreBoardButton.addEventListener("click", function(){
     scoreBoardPage.setAttribute("style", "display:flex");
 
 })
+
+// Return From Scoreboard
+
+returnToQuiz.addEventListener("click", function(){
+
+    quizArea.setAttribute("style", "display:none");
+    quizStart.setAttribute("style", "display:flex");
+    submissionMenu.setAttribute("style", "display:none");
+    scoreBoardButton.setAttribute("style", "display:default");
+    timer.setAttribute("style", "display:default");
+    scoreBoardPage.setAttribute("style", "display:none");
+
+})
+
+// Clear Scoreboard
 
 // Quiz Finished function
 
