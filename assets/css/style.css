@@ -47,7 +47,6 @@ button {
     text-align: center;
     padding: 10% 0px 10% 0px;
     margin: 0px 10px 0px 10px;
-    border: 1px solid purple;
 }
 
 .answerbutton {
@@ -63,7 +62,6 @@ button {
     height:100vh;
     width: 800px;
     padding: 0px 0px 10% 0px;
-    border: 1px solid blue;
 }
 
 #quizarea {
@@ -110,6 +108,34 @@ button {
     font-size: 2em;
     padding: 10px;
     text-align: center;
+}
+
+#scoreBoardPage{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+#scoreBoard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    border: 1px solid slateblue;
+}
+
+#scoreBoardTitle {
+    font-size: 3em;
+}
+
+.scoreBoardItem {
+    font-size: 1.5em;
+    border: 1px solid slateblue;
+
 }
 
 button:hover {
