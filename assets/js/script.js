@@ -39,6 +39,7 @@ let scoreText = "";
 
 let bool = "";
 let rand = "";
+let currentIndex = "";
 let questionAnswers = "";
 let correctAnswer = "";
 
@@ -138,7 +139,7 @@ submitScore.addEventListener("click", function(event){
     storeScore();
     renderScores();
 
-    // submissionMenu.setAttribute("style", "display:none");
+    submissionMenu.setAttribute("style", "display:none");
     startEndDetail.textContent = "Score Submitted! Play again?";
 }) 
 
@@ -156,7 +157,7 @@ yourInitials.addEventListener("submit", function(event){
     storeScore();
     renderScores();
 
-    // submissionMenu.setAttribute("style", "display:none");
+    submissionMenu.setAttribute("style", "display:none");
     startEndDetail.textContent = "Score Submitted! Play again?";
 }) 
 
@@ -212,7 +213,7 @@ function timerStart() {
         timeRemaining = 0;
         timer.textContent = "Timer: " + timeRemaining;
         gameoverScreen();
-    } else if (questionsAnswered === 8){
+    } else if (questionsAnswered === 10){
         clearInterval(countDown);
         quizFinish()
     }
@@ -263,7 +264,15 @@ function setAllFalse() {
 // Before setting an option to true, all questions are set to false to prevent any carryover from the previous question
 
 function questionSelect() {
+
     rand = Math.floor(Math.random() * 15);
+
+    if (rand === currentIndex) {
+        rand = Math.floor(Math.random() * 15)
+    }
+
+    currentIndex = rand;
+
     quizStatement.textContent = questionPool[rand];
 
     let questionAnswers = answerPool[rand];
